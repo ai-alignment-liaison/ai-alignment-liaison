@@ -3,6 +3,46 @@
 ## Overview
 The AI Alignment Liaison is a generative AI system designed to advise AI teams on how to align their AI development processes to a set of human values, ethical standards, and compliance requirements. It is a human-in-the-loop platform that guides teams through identifying core values, translating these into potential responsible AI requirements for a given product, strategizing on how to meet each requirement, and strategizing on how to validate that the requirements were indeed met.
 
+```mermaid
+%%{init: {'theme': 'default'}}%%
+graph TD
+
+%% Nodes
+user_prompt["<b>User Prompt</b>"]:::font_increase
+rag_process["<b><i class='fa fa-image'></i> <a rel='noopener' href='https://www.mermaidchart.com/raw/70a03a06-cf0f-4efb-af32-0fa6b9f7f08b?theme=light&version=v0.1&format=svg' target='_blank'>RAG Inference\nPipeline</a></b>"]:::font_increase
+collect_user_context_process["<b><i class='fa fa-image'></i> <a rel='noopener' href='https://www.mermaidchart.com/raw/385cd106-7ad6-46e6-aad1-0cc96357d321?theme=light&version=v0.1&format=svg' target='_blank'>Collect User Context</a></b>"]:::font_increase
+
+subgraph llm_receiver_pipeline["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<b>LLM Receiver Inference Pipeline</b>"]
+	llm_receiver_agent{"<b>LLM Receiver\nAgent</b>"}:::font_increase
+	document_alternatives["<b>Documentation</b> <br> <span style='text-align:left; display:block;'>Develop one of the following:</b> <br>* principles\n* requirements\n* action strategies\n* testing strategies</span>"]:::font_increase
+
+	process_thoughts["<b>Identify Values</b> <br> <span style='text-align:left; display:block;'>Help user process\nthoughts by asking\ninsightful questions</span>"]:::font_increase
+	list_actions["<b>Task Decomposition</b> <br> <span style='text-align:left; display:block;'>Turn an overall\naction strategy into\na list of actions</span>"]:::font_increase
+	which_actions_automatable["<b>Identify Automatable Actions</b>"]:::font_increase
+	automate_actions["<b><i class='fa fa-image'></i> <a rel='noopener' href='https://www.mermaidchart.com/raw/cac74264-070e-4e12-8a6e-df76286a4367?theme=light&version=v0.1&format=svg' target='_blank'>Automate Actions \n Pipeline</a></b>"]:::font_increase
+
+
+	llm_receiver_agent --> |"<span style='font-size: 40px;'>Documentation Needed</span>"| document_alternatives
+	llm_receiver_agent --> |"<span style='font-size: 40px;'>Brainstorming Needed</span>"| process_thoughts
+	llm_receiver_agent --> |"<span style='font-size: 40px;'>Action List Needed</span>"| list_actions
+	list_actions --> which_actions_automatable
+	which_actions_automatable --> |"<span style='font-size: 40px;'>Get consent from\nuser to automate</span>"| automate_actions
+
+end
+
+
+%% Edge connections between nodes
+user_prompt --> rag_process --> llm_receiver_agent
+user_prompt --> collect_user_context_process --> llm_receiver_agent
+
+
+%% Node styling.
+%% classDef title_styling fill:#ffffe0,stroke:#ffffe0,stroke-width:4px,font-size:14px,font-weight:bold,color:#003366;
+classDef font_increase font-size: 40px;
+classDef font_increase_more font-size: 40px;
+class llm_receiver_pipeline font_increase_more
+linkStyle default interpolate linear
+```
 ## Key Features
 
 ### Context Collection
