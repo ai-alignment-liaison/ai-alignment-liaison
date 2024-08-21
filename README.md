@@ -43,6 +43,12 @@ classDef font_increase_more font-size: 40px;
 class llm_receiver_pipeline font_increase_more
 linkStyle default interpolate linear
 ```
+<figure>
+	<figcaption>
+		<b>Flowchart created using mermaid.js by Ari Tal, 2024.</b><br><i>Note: The diagram contains clickable links to additional flowcharts, which may not render correctly due to current technical issues in Mermaid Chart.</i>
+	</figcaption>
+</figure>
+
 ## Key Features
 
 ### Context Collection
